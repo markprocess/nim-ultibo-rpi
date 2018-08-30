@@ -1,21 +1,21 @@
 #!/bin/bash
 set -e
 
-# on raspbian, build the program and reboot to it
-
-CONF=$1
-
-if [[ $CONF == "" ]]
+MODEL=$(cat /proc/device-tree/model)
+if [[ $MODEL =~ "Pi 3" ]]
 then
     CONF=RPI3
+elif [[ $MODEL =~ "Pi 2" ]]
+then
+    CONF=RPI2
+elif [[ $MODEL =~ "Pi" ]]
+then
+    CONF=RPI
+else
+    CONF=QEMUVPB
 fi
 
-./build.sh nimmain $CONF
-
-set -x
-sudo cp nim-ultibo-rpi-nimmain-kernel-$CONF.img *-config.txt *-cmdline.txt /boot
-#sudo cp /boot/config.txt /boot/default-config.txt
-sudo cp /boot/nim-ultibo-rpi-nimmain-config.txt /boot/config.txt
+./install.sh $CONF
 
 sleep 2
 sudo reboot

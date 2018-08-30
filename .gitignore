@@ -4,3 +4,4 @@
 *.img
 *.log
 *.o
+nimcache/

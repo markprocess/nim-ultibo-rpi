@@ -7,7 +7,7 @@ CONF=$2
 
 if [[ $LPR == "" ]]
 then
-    LPR=nimprogram
+    LPR=ultiboprogram
 fi
 
 if [[ $CONF == "" ]]
@@ -48,4 +48,6 @@ fpc -s -a -dBUILD_$CONF -B -O2 -Tultibo -Parm -Cp$ARCH -Wp$PROC -Fi$ULTIBO/sourc
 
 rm -rf compiled/$CONF
 mkdir -p compiled/$CONF
-mv nimprogram.s ppas.sh link.res compiled/$CONF/
+sed -i '/^SEARCH_DIR/d' link.res
+sed -i 's!^.*units!../../../../../lib!' link.res
+mv ultiboprogram.s link.res ppas.sh compiled/$CONF/
