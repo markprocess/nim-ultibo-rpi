@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-
+set -x
+ 
 REPO=nim-ultibo-rpi
 CONF=$1
 
@@ -42,12 +43,12 @@ RPI3)
 esac
 
 rm -rf libnimmain.a
-nim c -f --cpu:arm --app:staticlib --noMain --os:standalone --gc:none -d:release src/nim/nimmain.nim
+nim c -f --cpu:arm --app:staticlib --noMain --os:standalone --gc:none -d:release src/nimmain.nim
 
-ULTIBOCOMPILED=src/lgpl/ultibo/compiled/$CONF
+ULTIBOCOMPILED=lib/ultiboprogram/compiled/$CONF
 mv libnimmain.a $ULTIBOCOMPILED/
 pushd $ULTIBOCOMPILED
 ./ppas.sh
 popd
 
-mv $ULTIBOCOMPILED/$KERNEL $REPO-kernel-$CONF.img
+mv $ULTIBOCOMPILED/$KERNEL kernel-$CONF.img

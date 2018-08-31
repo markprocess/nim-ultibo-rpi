@@ -3,9 +3,6 @@ DoExitAsm ()
 { echo "An error occurred while assembling $1"; exit 1; }
 DoExitLink ()
 { echo "An error occurred while linking $1"; exit 1; }
-echo Assembling ultiboprogram
-/usr/bin/arm-none-eabi-as -mfloat-abi=hard -meabi=5 -march=armv6 -mfpu=vfpv2 -o ultiboprogram.o  ultiboprogram.s
-if [ $? != 0 ]; then DoExitAsm ultiboprogram; fi
 echo Linking ultiboprogram
 OFS=$IFS
 IFS="

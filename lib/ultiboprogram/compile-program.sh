@@ -44,10 +44,10 @@ do
     mv $f.formatted $f
 done
 
-fpc -s -a -dBUILD_$CONF -B -O2 -Tultibo -Parm -Cp$ARCH -Wp$PROC -Fi$ULTIBO/source/rtl/ultibo/extras -Fi$ULTIBO/source/rtl/ultibo/core @$ULTIBOBIN/$CONF.CFG $LPR.lpr |& tee errors.log
+fpc -Cn -dBUILD_$CONF -B -O2 -Tultibo -Parm -Cp$ARCH -Wp$PROC -Fi$ULTIBO/source/rtl/ultibo/extras -Fi$ULTIBO/source/rtl/ultibo/core @$ULTIBOBIN/$CONF.CFG $LPR.lpr |& tee errors.log
 
 rm -rf compiled/$CONF
 mkdir -p compiled/$CONF
 sed -i '/^SEARCH_DIR/d' link.res
-sed -i 's!^.*units!../../../../../lib!' link.res
-mv ultiboprogram.s link.res ppas.sh compiled/$CONF/
+sed -i 's!^.*units!../../../ultibo!' link.res
+mv ultiboprogram.o link.res ppas.sh compiled/$CONF/

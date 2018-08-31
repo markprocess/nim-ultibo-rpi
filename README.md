@@ -1,5 +1,5 @@
 
-## Assumes raspbian host with gcc-arm-none-eabi and nim installed
+## Assumes raspbian host with binutils-arm-none-eabi and nim installed
 
 ### To prepare to run the nim program (do this once)
 
@@ -19,6 +19,6 @@
 
 ### To add more ultibo features
 
-    cd src/lgpl/ultibo
-    edit nimprogram.lpr
+    cd lib/ultiboprogram
+    edit ultiboprogram.lpr
     ./compile-all.sh

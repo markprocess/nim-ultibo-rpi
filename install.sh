@@ -15,9 +15,10 @@ do
 done
 
 set -x
+sudo mkdir -p /boot/$REPO
 for CONF in $CONFLIST
 do
-    sudo cp $REPO-kernel-$CONF.img /boot
+    sudo cp kernel-$CONF.img /boot/$REPO
 done
-sudo cp $REPO-config.txt $REPO-cmdline.txt /boot
-sudo cp $REPO-config.txt /boot/config.txt
+sudo cp config.txt cmdline.txt /boot/$REPO
+sudo cp config.txt /boot/config.txt
