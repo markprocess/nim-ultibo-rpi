@@ -4,4 +4,5 @@
 *.img
 *.log
 *.o
+*.ppu
 nimcache/

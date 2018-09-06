@@ -49,5 +49,9 @@ fpc -Cn -dBUILD_$CONF -B -O2 -Tultibo -Parm -Cp$ARCH -Wp$PROC -Fi$ULTIBO/source/
 rm -rf compiled/$CONF
 mkdir -p compiled/$CONF
 sed -i '/^SEARCH_DIR/d' link.res
-sed -i 's!^.*units!../../../ultibo!' link.res
-mv ultiboprogram.o link.res ppas.sh compiled/$CONF/
+sed -i 's!^/home/pi/!../../../!' link.res
+mv ultiboprogram.o bcmfw.o link.res ppas.sh compiled/$CONF/
+if [[ $PROC == QEMUVPB ]]
+then
+    mv QEMUVersatilePB2.o compiled/$CONF/
+fi

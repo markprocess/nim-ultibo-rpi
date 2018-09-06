@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-set -x
  
 REPO=nim-ultibo-rpi
 CONF=$1
